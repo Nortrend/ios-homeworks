@@ -17,16 +17,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
         
+        
         let tabBarController = UITabBarController()
  
         window.rootViewController = tabBarController
-        
-        let feedNavigationController = UINavigationController(rootViewController: FeedViewController())
-        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-        
-        let profileNavigationController = UINavigationController(rootViewController: ProfileViewController())
+       
+        let profileViewController = ProfileViewController()
+        profileViewController.title = "Profile"
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        profileNavigationController.isNavigationBarHidden = false // добавляем Navigation Bar
+        profileNavigationController.navigationBar.backgroundColor = .white
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+        
+        
+        let feedViewController = FeedViewController()
+        feedViewController.title = "Feed"
+        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+        feedNavigationController.isNavigationBarHidden = false
+        feedNavigationController.navigationBar.backgroundColor = .white
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+
         self.window = window
         
     }
